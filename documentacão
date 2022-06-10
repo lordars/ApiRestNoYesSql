@@ -1,0 +1,7 @@
+user name: baseapi
+
+password: Y8eNovNQEJmd68u6
+
+dburi :
+
+mongodb+srv://baseapi:Y8eNovNQEJmd68u6@cluster0.hxiz8.mongodb.net/apitestbase?retryWrites=true&w=majority
