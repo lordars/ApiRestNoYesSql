@@ -23,6 +23,14 @@ const TracksScheme= new mongoose.Schema(
         nationality:{type:String},
 
        },
+       duration:{
+        start:{
+            type:Number,
+        },
+        end:{
+            type:Number,
+        }
+       },
        mediaId:{
         type:mongoose.Types.ObjectId,
        },
