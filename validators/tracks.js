@@ -18,5 +18,12 @@ check("mediaId").exists().notEmpty().isMongoId(),
 
 ]
 
+const validatorGetItem= [
+    
+    check("id").exists().notEmpty().isMongoId(),
+    
+    (req,res,next)=> validationResults(req,res,next)
+    
+    ]
 
-module.exports= {validatorCreateItem};
+module.exports= {validatorCreateItem,validatorGetItem};

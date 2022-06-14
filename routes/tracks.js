@@ -1,14 +1,14 @@
 const express = require("express")
 const router = express.Router();
 const {getItems,getItem,createItem,updateItem,deleteItem} = require("../controllers/tracks")
-const {validatorCreateItem} = require ("../validators/tracks")
+const {validatorCreateItem,validatorGetItem} = require ("../validators/tracks")
 const customHeader = require ("../middleware/customHeader")
 
 router.get("/",getItems)
-router.get("/",getItem)
+router.get("/:id",validatorGetItem,getItem)
 router.post("/",validatorCreateItem, createItem)
-router.get("/",updateItem)
-router.delete("/",deleteItem)
+router.put("/:id",validatorGetItem,validatorCreateItem,updateItem)
+router.delete("/:id",validatorGetItem, deleteItem)
 
 
 
