@@ -1,3 +1,4 @@
 PORT= 3000
 DB_URI_MONGO=mongodb+srv://baseapi:
 PUBLIC_URL=http://localhost:3000
+JWT_SECRET= CHAVE JWT

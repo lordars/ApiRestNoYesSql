@@ -42,15 +42,22 @@ const getItem = async (req, res) => {
   //** inserta um registro */
 const createItem = async (req, res) => {
  
-    const {body, file} = req
 
-    const fileData = {
-      filename: file.filename,
-      url:`${PUBLIC_URL}/${file.filename}`
+try {
+  const {body, file} = req
 
-    }
- const data =  await storageModel.create(fileData);
-    res.send({data})
+  const fileData = {
+    filename: file.filename,
+    url:`${PUBLIC_URL}/${file.filename}`
+
+  }
+const data =  await storageModel.create(fileData);
+  res.send({data})
+} catch (error) {
+  handleHttpError(res,"Error_get_item", 403)
+}
+
+  
 
 
 };

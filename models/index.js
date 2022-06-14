@@ -1,6 +1,6 @@
 const models= {
     tracksModel: require("./nosql/traks"),
-    userModel: require("./nosql/users"),
+    usersModel: require("./nosql/users"),
     storageModel: require("./nosql/storage"),
 }
 
