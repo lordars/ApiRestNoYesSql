@@ -12,7 +12,7 @@ async (req, res) => {
 
     const user= req.user;
     
-    const data =  await tracksModel.find({});
+    const data =  await tracksModel.findALLData({});
     res.send({ data , user });
   } catch (error) {
      handleHttpError(res,"Error_get_items", 403)
@@ -25,7 +25,7 @@ const getItem =  async (req, res) => {
   try {
 
     const {id} = matchedData(req);    
-    const data =  await tracksModel.findById(id);
+    const data =  await tracksModel.findOneData(id);
     res.send({ data });
   } catch (error) {
      handleHttpError(res,"Error_get_item", 403)
@@ -41,6 +41,7 @@ const createItem = async (req, res) => {
     const data =  await tracksModel.create(body);
        res.send({data})
   } catch (error) {
+    console.log(error)
      handleHttpError(res,"Error_CreteItems_items", 403)
   }
 

@@ -12,7 +12,7 @@ check("artist.nationality").exists().notEmpty(),
 check("duration").exists().notEmpty(),
 check("duration.start").exists().notEmpty(),
 check("duration.end").exists().notEmpty(),
-check("mediaId").exists().notEmpty().isMongoId(),
+check("mediaId").exists().notEmpty(),
 
 (req,res,next)=> validationResults(req,res,next)
 
@@ -20,7 +20,7 @@ check("mediaId").exists().notEmpty().isMongoId(),
 
 const validatorGetItem= [
     
-    check("id").exists().notEmpty().isMongoId(),
+    check("id").exists().notEmpty(),
     
     (req,res,next)=> validationResults(req,res,next)
     

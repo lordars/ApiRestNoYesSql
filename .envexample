@@ -3,4 +3,10 @@ DB_URI_MONGO=mongodb+srv://baseapi:
 PUBLIC_URL=http://localhost:3000
 JWT_SECRET= CHAVE JWT
 
-URL_SLACK_HOOK=
+URL_SLACK_HOOK= "dasfsdfasdfkljhskljhljk3hlk23lkjlkj"
+
+MYSQL_DATABASE= test
+MYSQL_USERNAME=root
+MYSQL_PASSWORD=123456
+MYSQL_HOST=127.0.0.1
+ENGINE_DB= nosql

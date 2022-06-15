@@ -44,5 +44,45 @@ const TracksScheme= new mongoose.Schema(
     }
 );
 
+
+TracksScheme.statics.findALLData = function(){
+  const joinData = this.aggregate([{ //pai tracks
+    $lookup:{
+        from:"storages", //relacion storage
+        localField: "mediaId", // tracks.mediaId
+        foreignField:"_id", // storage._id
+        as:"audio" //alias audio
+        
+    }
+    },
+    {
+        $unwind:"$audio"
+    }
+    ])
+  return joinData
+}
+
+TracksScheme.statics.findOneData = function(id){
+  const joinData = this.aggregate([
+    {
+        $match:{ _id:mongoose.Types.ObjectId(id)}
+    },
+    { //pai tracks
+    $lookup:{
+        from:"storages", //relacion storage
+        localField: "mediaId", // tracks.mediaId
+        foreignField:"_id", // storage._id
+        as:"audio" //alias audio
+        
+    }
+    },
+    {
+        $unwind:"$audio"
+    },
+    ])
+  return joinData
+}
+
+
 TracksScheme.plugin(mongoose_delete, { overrideMethods: 'all' })
 module.exports = mongoose.model("tracks", TracksScheme)

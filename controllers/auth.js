@@ -1,7 +1,7 @@
 const { matchedData } = require("express-validator");
 const {tokenSign} = require("../utils/handleJwt")
 const {compare,encrypt} = require("../utils/handlePassword");
-const {usersModel} = require("../models/")
+const  {usersModel} = require("../models/")
 const {handleHttpError} = require("../utils/handleError")
 
 const registerCtrl = async(req,res)=>{
@@ -33,12 +33,13 @@ try {
     
     req = matchedData(req);
     
-    const user = await usersModel.findOne({email:req.email}).select('password name role email') //filtro para o password não vir null a causa dos models que blockea o password
-    
+    const user = await usersModel.findOne({email:req.email})//.select('password name role email') activar para mongodb//filtro para o password não vir null a causa dos models que blockea o password
+    console.log(user , "****************************ConsoleUSERS************")
     if(!user){
         handleHttpError(res, "USER_NOT_EXISTS", 404);
         return
     }
+   
 
     const hashPassword= user.get("password");
 

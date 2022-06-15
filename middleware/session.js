@@ -1,8 +1,8 @@
 const {handleHttpError} = require("../utils/handleError");
 const { verifyToken } = require("../utils/handleJwt");
 const {usersModel} = require("../models/index")
- 
-
+const getProperties= require("../utils/handlePropertiesEngine")
+const propertiesKey = getProperties()
 const authMiddleware =  async  (req,res,next) =>{
 try {
 
@@ -13,13 +13,26 @@ try {
 
     const token = req.headers.authorization.split(' ').pop(); //pega so o string não o behar
     const dataToken = await verifyToken(token);
-
-    if(!dataToken._id){
-        handleHttpError(res, "ERROR_ID_TOKEN",401)
+    
+  
+    if(!dataToken){
+        handleHttpError(res, "NOT_JWT",401)
         return
     }
 
-    const user = await usersModel.findById(dataToken._id)
+
+  /*  if(!dataToken._id){
+        handleHttpError(res, "ERROR_ID_TOKEN",401)
+        return
+    }
+*/
+
+const query ={
+
+    [propertiesKey.id] : dataToken[propertiesKey.id]
+}
+
+    const user = await usersModel.findOne(query) //const user = await usersModel.findById(dataToken._id) so existe findbyid em mongo mas findOne serve para os dois
     req.user = user;
 
  next()
